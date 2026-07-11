@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
         ModernTime,
         AncientTime
     }
+// time managment
+    [SerializeField] public float maxAncientTime = 90f; // 3 minutes // actually changing to 1min30sec
+
+    public float RemainingAncientTime { get; private set; }
+    
+    public static event Action<float> OnAncientTimeChanged;
+// time managment
 
     public Time CurrentTime { get; private set; } = Time.ModernTime;
 
@@ -28,11 +35,30 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        RemainingAncientTime = maxAncientTime;
+        OnAncientTimeChanged?.Invoke(RemainingAncientTime);
+    }
+
     private void Update()
     {
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             DoTimeSwap();
+        }
+        
+        if (CurrentTime == Time.AncientTime)
+        {
+            RemainingAncientTime -= UnityEngine.Time.deltaTime;
+            RemainingAncientTime = Mathf.Max(0, RemainingAncientTime);
+
+            OnAncientTimeChanged?.Invoke(RemainingAncientTime);
+
+            if (RemainingAncientTime <= 0)
+            {
+                CheckLoseCondition();
+            }
         }
     }
 
@@ -54,5 +80,13 @@ public class GameManager : MonoBehaviour
         {
             camera.gameObject.transform.position += new Vector3(0, 10000f, 0);
         }
+    }
+
+    private void CheckLoseCondition()
+    {
+        // if (!PlayerInventory.instance.HasTreasure())
+        // {
+        //     Debug.Log("Game Over!");
+        // }
     }
 }
