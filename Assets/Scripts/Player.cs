@@ -1,21 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    private float maxMoveSpeed = 5f;
-    private float acceleration = 10f;
+    private float maxMoveSpeed = 4f;
+    private float acceleration = 8f;
 
     private Rigidbody2D rb;
     private InputAction moveAction;
     private Vector2 moveInput;
+    private SpriteRenderer spriteRenderer;
+    private float rotationSpeed = 360f;
+    private float facingAngle;
+    private float lastTurnDirection = 1f;
 
     [SerializeField] private GameObject camera;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        facingAngle = rb.rotation + (spriteRenderer.flipX ? 180f : 0f);
     }
 
     private void Start()
@@ -54,6 +59,43 @@ public class Player : MonoBehaviour
         Vector2 newHorizontalVelocity = Vector2.MoveTowards(currentHorizontalVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
 
         rb.linearVelocity = new Vector2(newHorizontalVelocity.x, newHorizontalVelocity.y);
+
+        // Handle direction
+        if (rb.linearVelocity.sqrMagnitude > 0.001f || moveInput.sqrMagnitude > 0.001f)
+        {
+            Vector2 facingDirection = moveInput.sqrMagnitude > 0.001f
+                ? moveInput.normalized
+                : rb.linearVelocity.normalized;
+
+            float targetAngle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
+            float angleDifference = Mathf.DeltaAngle(facingAngle, targetAngle);
+
+            if (Mathf.Abs(angleDifference) >= 179.9f)
+            {
+                angleDifference = -lastTurnDirection * 180f;
+            }
+
+            float angleChange = Mathf.Clamp(
+                angleDifference,
+                -rotationSpeed * Time.fixedDeltaTime,
+                rotationSpeed * Time.fixedDeltaTime
+            );
+
+            if (Mathf.Abs(angleChange) > 0.001f)
+            {
+                lastTurnDirection = Mathf.Sign(angleChange);
+            }
+
+            facingAngle += angleChange;
+
+            spriteRenderer.flipX = Mathf.Cos(facingAngle * Mathf.Deg2Rad) < 0f;
+
+            rb.MoveRotation(
+                spriteRenderer.flipX
+                    ? facingAngle - 180f
+                    : facingAngle
+            );
+        }
     }
 
     // Move positions when time swap happens
