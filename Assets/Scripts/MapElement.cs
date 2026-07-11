@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 public class MapElement : MonoBehaviour
 {
+    [SerializeField] private GameObject ancientPrefab;
     public GameManager.Time nativeTime { get; set; } = GameManager.Time.ModernTime;
     public MapElement OtherTimeObject { get; set; } = null;
     private Vector3 OTHER_POSITION_OFFSET = new Vector3(0, GameManager.TIME_Y_OFFSET, 0);
@@ -14,20 +15,16 @@ public class MapElement : MonoBehaviour
             return;
         }
 
-        // Get name without the (x) at the end if it's a duplicate
-        string objBaseName = Regex.Replace(gameObject.name, @" \(\d+\)$", "");
-
-        // Instantiate an ancient copy from the prefab
-        GameObject ancientPrefab = Resources.Load<GameObject>("Prefabs/Ancient/" + objBaseName + "_ancient");
-
-        if (ancientPrefab != null)
+        if (ancientPrefab == null)
         {
-            GameObject ancientObject = Instantiate(ancientPrefab, transform.position + OTHER_POSITION_OFFSET, transform.rotation);
-            ancientObject.SetActive(false);
-            OtherTimeObject = ancientObject.GetComponent<MapElement>();
-            OtherTimeObject.nativeTime = GameManager.Time.AncientTime;
-            OtherTimeObject.OtherTimeObject = this;
+            ancientPrefab = gameObject;
         }
+
+        GameObject ancientObject = Instantiate(ancientPrefab, transform.position + OTHER_POSITION_OFFSET, transform.rotation);
+        ancientObject.SetActive(false);
+        OtherTimeObject = ancientObject.GetComponent<MapElement>();
+        OtherTimeObject.nativeTime = GameManager.Time.AncientTime;
+        OtherTimeObject.OtherTimeObject = this;
     }
    
     // Handler called when swapping off of this element's native time to other time

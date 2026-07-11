@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Get movement direction
         if (moveAction == null)
         {
             return;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Update velocity
         Vector2 inputDirection = new Vector2(moveInput.x, moveInput.y);
 
         if (inputDirection.sqrMagnitude > 1f)
