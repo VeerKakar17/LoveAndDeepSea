@@ -5,7 +5,7 @@ public class MapElement : MonoBehaviour
 {
     public GameManager.Time nativeTime { get; set; } = GameManager.Time.ModernTime;
     public MapElement OtherTimeObject { get; set; } = null;
-    private Vector3 OTHER_POSITION_OFFSET = new Vector3(0, 10000f, 0);
+    private Vector3 OTHER_POSITION_OFFSET = new Vector3(0, GameManager.TIME_Y_OFFSET, 0);
 
     void Start()
     {

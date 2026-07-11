@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] private GameObject camera;
+    public static float TIME_Y_OFFSET = 10000f;
 
     public enum Time
     {
@@ -70,16 +70,6 @@ public class GameManager : MonoBehaviour
                 : Time.ModernTime;
 
         OnTimeSwap?.Invoke(CurrentTime);
-
-        // Move camera
-        if (CurrentTime == Time.ModernTime)
-        {
-            camera.gameObject.transform.position -= new Vector3(0, 10000f, 0);
-        } 
-        else
-        {
-            camera.gameObject.transform.position += new Vector3(0, 10000f, 0);
-        }
     }
 
     private void CheckLoseCondition()
