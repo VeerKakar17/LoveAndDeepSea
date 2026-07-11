@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         AncientTime
     }
 // time managment
-    [SerializeField] public float maxAncientTime = 90f; // 3 minutes // actually changing to 1min30sec
+    [SerializeField] public float maxAncientTime = 60f; // 3 minutes // actually changing to 1min
 
     public float RemainingAncientTime { get; private set; }
     

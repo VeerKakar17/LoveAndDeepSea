@@ -26,11 +26,11 @@ public class TimerUI : MonoBehaviour
     {
         clockFill.fillAmount = remaining / GameManager.instance.maxAncientTime;
 
-        if (remaining < 30)
+        if (remaining < 15)
         {
             clockFill.color = Color.red;
         }
-        else if (remaining < 60)
+        else if (remaining < 30)
         {
             clockFill.color = Color.yellow;
         }
