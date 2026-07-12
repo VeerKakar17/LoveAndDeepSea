@@ -73,17 +73,17 @@ public class StunEnemy : Enemy
                     directionToPlayer.x
                 ) * Mathf.Rad2Deg;
 
-                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                rb.MoveRotation(angle);
             }
 
             dashTimer += Time.deltaTime;
 
             if (dashTimer >= dashCooldown * (hitPlayer ? 2 : 1))
             {
-                Vector2 dashDirection = transform.right;
+                Vector2 dashDirection = directionToPlayer.normalized;
 
                 dashTargetPosition =
-                    (Vector2)transform.position +
+                    rb.position +
                     dashDirection * dashDistance;
 
                 closeMoveState = CloseMoveState.Dashing;
@@ -94,7 +94,7 @@ public class StunEnemy : Enemy
         {
             MoveTowards(dashTargetPosition, dashSpeed);
 
-            if (Vector2.Distance(transform.position, dashTargetPosition) < 0.001f)
+            if (Vector2.Distance(rb.position, dashTargetPosition) < 0.001f)
             {
                 dashTimer = 0f;
                 closeMoveState = CloseMoveState.Charging;
@@ -120,15 +120,11 @@ public class StunEnemy : Enemy
     private void MoveTowards(Vector2 target, float speed)
     {
         Vector2 newPosition = Vector2.MoveTowards(
-            transform.position,
+            rb.position,
             target,
-            speed * Time.deltaTime
+            speed * Time.fixedDeltaTime
         );
 
-        transform.position = new Vector3(
-            newPosition.x,
-            newPosition.y,
-            transform.position.z
-        );
+        rb.MovePosition(newPosition);
     }
 }

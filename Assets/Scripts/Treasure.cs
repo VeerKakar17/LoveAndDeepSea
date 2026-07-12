@@ -126,7 +126,7 @@ public class Treasure : MonoBehaviour
     {
         if (collected)
         {
-            transform.position = Vector2.zero;
+            transform.localPosition = Vector2.zero;
         }
     }
 }
