@@ -348,6 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 1360534061}
+  dialogueManager: {fileID: 0}
+  inDialogueState: 0
   maxAncientTime: 60
 --- !u!4 &386699202
 Transform:

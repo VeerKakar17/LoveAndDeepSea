@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     public void DoTimeSwap()
     {
         Debug.Log("Swapping");
+        shake.enableBounds = false;
         if (CurrentTime == Time.ModernTime)
         {
             // transition.material.SetFloat("_SwapDirection", 0f);
@@ -126,6 +127,8 @@ public class GameManager : MonoBehaviour
 
 
         OnTimeSwap?.Invoke(CurrentTime);
+
+        shake.enableBounds = true;
     }
 
     private void CheckLoseCondition()

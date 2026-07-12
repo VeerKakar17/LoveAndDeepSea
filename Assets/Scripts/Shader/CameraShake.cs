@@ -14,6 +14,8 @@ public class CameraShake : MonoBehaviour
 
     private Camera cam;
 
+    public bool enableBounds = true;
+
     private void Awake()
     {
         cam = GetComponent<Camera>();
@@ -21,6 +23,7 @@ public class CameraShake : MonoBehaviour
 
     void LateUpdate()
     {
+        if (enableBounds) {
         Vector3 target = player.position;
 
         float halfHeight = cam.orthographicSize;
@@ -46,6 +49,7 @@ public class CameraShake : MonoBehaviour
             ref velocity,
             smoothTime
         );
+        }
     }
 
     public IEnumerator Shake(float amount, float duration)
