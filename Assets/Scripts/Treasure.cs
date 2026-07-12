@@ -110,16 +110,7 @@ public class Treasure : MonoBehaviour
     private void Update()
     {
         // clamp pos
-        Vector3 pos = transform.position;
-
-        Vector3 min = UnityEngine.Camera.main.ViewportToWorldPoint(new Vector3(0, 0, UnityEngine.Camera.main.nearClipPlane));
-        Vector3 max = UnityEngine.Camera.main.ViewportToWorldPoint(new Vector3(1, 1, UnityEngine.Camera.main.nearClipPlane));
-
-        float margin = 0.5f;
-
-        pos.x = Mathf.Clamp(pos.x, min.x + margin, max.x - margin);
-        pos.y = Mathf.Clamp(pos.y, min.y + margin, max.y - margin);
-        transform.position = pos;
+        
     }
 
     private void OnEnable()
