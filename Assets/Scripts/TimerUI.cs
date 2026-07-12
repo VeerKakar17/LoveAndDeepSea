@@ -28,15 +28,15 @@ public class TimerUI : MonoBehaviour
 
         if (remaining < 15)
         {
-            clockFill.color = Color.red;
+            clockFill.color = new Color(1f, 0f, 0f, .5f);
         }
         else if (remaining < 30)
         {
-            clockFill.color = Color.yellow;
+            clockFill.color = new Color(1f, 1f, 0f, .5f);
         }
         else
         {
-            clockFill.color = Color.green;
+            clockFill.color = new Color(0f, 1f, 0f, .5f);
         }
     }
 }
