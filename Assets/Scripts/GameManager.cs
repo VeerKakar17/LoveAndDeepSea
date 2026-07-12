@@ -6,8 +6,10 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public Player player;
+    public DialogueManager dialogueManager;
     public static GameManager instance;
     public static float TIME_Y_OFFSET = 10000f;
+    public bool inDialogueState = false;
 
     public enum Time
     {
@@ -58,6 +60,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (inDialogueState)
+        {
+            dialogueManager.OnUpdate();
+            return;
+        }
+
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            StartDialogueState();
+        }
+
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             DoTimeSwap();
@@ -115,5 +128,16 @@ public class GameManager : MonoBehaviour
         } else {
             Debug.Log("win");
         }
+    }
+
+    public void StartDialogueState()
+    {
+        inDialogueState = true;
+        dialogueManager.StartTestDialogue();
+    }
+
+    public void EndDialogueState()
+    {
+        inDialogueState = false;
     }
 }
