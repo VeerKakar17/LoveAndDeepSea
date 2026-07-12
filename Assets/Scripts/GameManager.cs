@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class GameManager : MonoBehaviour
         AncientTime
     }
 // time managment
-    [SerializeField] public float maxAncientTime = 60f; // 3 minutes // actually changing to 1min
+    [SerializeField] public float maxAncientTime = 60f; 
 
     public float RemainingAncientTime { get; private set; }
     
     public static event Action<float> OnAncientTimeChanged;
-// time managment
+
+    private CameraShake shake;
+//
 
     public Time CurrentTime { get; private set; } = Time.ModernTime;
 
@@ -34,12 +37,23 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+        shake = FindFirstObjectByType<CameraShake>();
     }
 
     private void Start()
     {
         RemainingAncientTime = maxAncientTime;
         OnAncientTimeChanged?.Invoke(RemainingAncientTime);
+
+        // material.SetVector(
+        //     "_Center",
+        //     Camera.main.WorldToViewportPoint(player.position)
+        // );
+
+        // material.SetFloat(
+        //     "_Radius",
+        //     radius
+        // );
     }
 
     private void Update()
@@ -66,9 +80,29 @@ public class GameManager : MonoBehaviour
     public void DoTimeSwap()
     {
         Debug.Log("Swapping");
-        CurrentTime = CurrentTime == Time.ModernTime
-                ? Time.AncientTime
-                : Time.ModernTime;
+        StartCoroutine(SwapSequence());
+    }
+
+    IEnumerator SwapSequence()
+    {
+        // if (CurrentTime == Time.ModernTime)
+        // {
+        //     transition.material.SetFloat("_SwapDirection", 0f);
+        // }
+        // else
+        // {
+        //     transition.material.SetFloat("_SwapDirection", 1f);
+        // }
+        // yield return StartCoroutine(
+        //     transition.Play()
+        // );
+        yield return StartCoroutine(shake.Shake(.1f,.5f));
+
+        CurrentTime =
+            CurrentTime == Time.ModernTime
+            ? Time.AncientTime
+            : Time.ModernTime;
+
 
         OnTimeSwap?.Invoke(CurrentTime);
     }

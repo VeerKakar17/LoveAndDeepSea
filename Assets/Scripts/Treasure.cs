@@ -112,8 +112,8 @@ public class Treasure : MonoBehaviour
         // clamp pos
         Vector3 pos = transform.position;
 
-        Vector3 min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-        Vector3 max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+        Vector3 min = UnityEngine.Camera.main.ViewportToWorldPoint(new Vector3(0, 0, UnityEngine.Camera.main.nearClipPlane));
+        Vector3 max = UnityEngine.Camera.main.ViewportToWorldPoint(new Vector3(1, 1, UnityEngine.Camera.main.nearClipPlane));
 
         float margin = 0.5f;
 
