@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     private float facingAngle;
     private float lastTurnDirection = 1f;
 
+    public Vector2 externalForce;
+    private Treasure heldTreasure;
+
     [SerializeField] private GameObject camera;
 
     private void Awake()
@@ -37,6 +40,15 @@ public class Player : MonoBehaviour
         }
 
         moveInput = moveAction.ReadValue<Vector2>();
+
+        if (Keyboard.current.xKey.wasPressedThisFrame)
+        {
+            if (heldTreasure != null)
+            {
+                heldTreasure.OnDropped();
+                heldTreasure = null;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -51,14 +63,15 @@ public class Player : MonoBehaviour
 
         Vector2 targetVelocity = inputDirection * maxMoveSpeed;
 
-        Vector2 currentHorizontalVelocity = new Vector3(
-            rb.linearVelocity.x,
-            rb.linearVelocity.y
+        Vector2 movementVelocity = Vector2.MoveTowards(
+            rb.linearVelocity - externalForce,
+            targetVelocity,
+            acceleration * Time.fixedDeltaTime
         );
 
-        Vector2 newHorizontalVelocity = Vector2.MoveTowards(currentHorizontalVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+        rb.linearVelocity = movementVelocity + externalForce;
 
-        rb.linearVelocity = new Vector2(newHorizontalVelocity.x, newHorizontalVelocity.y);
+        externalForce = Vector2.zero;
 
         // Handle direction
         if (rb.linearVelocity.sqrMagnitude > 0.001f || moveInput.sqrMagnitude > 0.001f)
@@ -96,6 +109,17 @@ public class Player : MonoBehaviour
                     : facingAngle
             );
         }
+        // clamp pos
+        Vector3 pos = transform.position;
+
+        Vector3 min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Vector3 max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+
+        float margin = 0.5f;
+
+        pos.x = Mathf.Clamp(pos.x, min.x + margin, max.x - margin);
+        pos.y = Mathf.Clamp(pos.y, min.y + margin, max.y - margin);
+        transform.position = pos;
     }
 
     // Move positions when time swap happens
@@ -120,5 +144,10 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         GameManager.OnTimeSwap -= HandleTimeSwap;
+    }
+
+    public void HoldTreasure(Treasure treasure)
+    {
+        heldTreasure = treasure;
     }
 }
