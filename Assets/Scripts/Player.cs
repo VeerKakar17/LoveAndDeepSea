@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject camera;
 
+    private float timer;
+    private float stunUntilTime;
+    private bool isStunned;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,10 +34,27 @@ public class Player : MonoBehaviour
     private void Start()
     {
         moveAction = InputSystem.actions.FindAction("Player/Move");
+        isStunned = false;
+        timer = 0;
+        stunUntilTime = 0;
     }
 
     private void Update()
     {
+        if (isStunned)
+        {
+            timer += Time.deltaTime;
+            if (timer < stunUntilTime)
+            {
+                return;
+            }
+
+            Debug.Log("Player un-stunned");
+            isStunned = false;
+            stunUntilTime = 0;
+            timer = 0;
+        }
+
         // Get movement direction
         if (moveAction == null)
         {
@@ -53,6 +75,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isStunned) return;
         // Update velocity
         Vector2 inputDirection = new Vector2(moveInput.x, moveInput.y);
 
@@ -149,5 +172,15 @@ public class Player : MonoBehaviour
     public void HoldTreasure(Treasure treasure)
     {
         heldTreasure = treasure;
+    }
+
+    public void StunForSeconds(float seconds)
+    {
+        Debug.Log("STUNNING PLAYER");
+        timer = 0;
+        stunUntilTime = seconds;
+        isStunned = true;
+        rb.linearVelocity = new Vector3(0f, 0f, 0f);
+        moveInput = Vector2.zero;
     }
 }

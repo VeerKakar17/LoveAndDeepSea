@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] public Player player;
     public static GameManager instance;
     public static float TIME_Y_OFFSET = 10000f;
 

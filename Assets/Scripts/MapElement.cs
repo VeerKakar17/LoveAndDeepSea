@@ -8,7 +8,7 @@ public class MapElement : MonoBehaviour
     public MapElement OtherTimeObject { get; set; } = null;
     private Vector3 OTHER_POSITION_OFFSET = new Vector3(0, GameManager.TIME_Y_OFFSET, 0);
 
-    void Start()
+    protected virtual void Start()
     {
         if (nativeTime == GameManager.Time.AncientTime)
         {
@@ -28,7 +28,7 @@ public class MapElement : MonoBehaviour
     }
    
     // Handler called when swapping off of this element's native time to other time
-    public void HandleTimeSwap(GameManager.Time newTime)
+    protected virtual void HandleTimeSwap(GameManager.Time newTime)
     {
         // Edge case should not be possible, but adding just in case
         if (newTime == nativeTime)
