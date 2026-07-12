@@ -1239,6 +1239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d73893b27a1de43aef99e8809edf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  player: {fileID: 1360534063}
+  minBounds: {x: -18, y: -5}
+  maxBounds: {x: 100, y: 5}
+  smoothTime: 0.15
 --- !u!1 &1360534059
 GameObject:
   m_ObjectHideFlags: 0

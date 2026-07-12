@@ -3,16 +3,49 @@ using System.Collections;
 
 public class CameraShake : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Transform player;
+
+    [SerializeField] private Vector2 minBounds;
+    [SerializeField] private Vector2 maxBounds;
+
+    [SerializeField] private float smoothTime = 0.15f;
+
+    private Vector3 velocity;
+
+    private Camera cam;
+
+    private void Awake()
     {
-        
+        cam = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        Vector3 target = player.position;
+
+        float halfHeight = cam.orthographicSize;
+        float halfWidth = halfHeight * cam.aspect;
+
+        target.x = Mathf.Clamp(
+            target.x,
+            minBounds.x + halfWidth,
+            maxBounds.x - halfWidth
+        );
+
+        target.y = Mathf.Clamp(
+            target.y,
+            minBounds.y + halfHeight,
+            maxBounds.y - halfHeight
+        );
+
+        target.z = transform.position.z;
+
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            target,
+            ref velocity,
+            smoothTime
+        );
     }
 
     public IEnumerator Shake(float amount, float duration)
