@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebd0db3203aa254188139c463923635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 1360534061}
   maxAncientTime: 60
 --- !u!4 &386699202
 Transform:
@@ -374,7 +375,6 @@ GameObject:
   - component: {fileID: 600774941}
   - component: {fileID: 600774940}
   - component: {fileID: 600774939}
-  - component: {fileID: 600774938}
   - component: {fileID: 600774937}
   m_Layer: 0
   m_Name: Ancient Camera
@@ -382,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &600774937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,21 +397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimelineCamera
   player: {fileID: 1360534063}
   ancient: 1
---- !u!114 &600774938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600774936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6af0d59d46fd4e913aaed8cef725a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeTransitionEffect
-  material: {fileID: 2100000, guid: 8317a64d4e618094bb9392e60717fefa, type: 2}
-  player: {fileID: 0}
-  duration: 1
 --- !u!81 &600774939
 AudioListener:
   m_ObjectHideFlags: 0
@@ -497,7 +482,6 @@ GameObject:
   - component: {fileID: 655512325}
   - component: {fileID: 655512324}
   - component: {fileID: 655512323}
-  - component: {fileID: 655512322}
   - component: {fileID: 655512321}
   m_Layer: 0
   m_Name: Modern Camera
@@ -505,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &655512321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,21 +504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimelineCamera
   player: {fileID: 1360534063}
   ancient: 0
---- !u!114 &655512322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655512320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6af0d59d46fd4e913aaed8cef725a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeTransitionEffect
-  material: {fileID: 2100000, guid: 8317a64d4e618094bb9392e60717fefa, type: 2}
-  player: {fileID: 0}
-  duration: 1
 --- !u!81 &655512323
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1267,12 +1236,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335962927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6af0d59d46fd4e913aaed8cef725a, type: 3}
+  m_Script: {fileID: 11500000, guid: f9d73893b27a1de43aef99e8809edf1f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeTransitionEffect
-  material: {fileID: 2100000, guid: 8317a64d4e618094bb9392e60717fefa, type: 2}
-  player: {fileID: 0}
-  duration: 1
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
 --- !u!1 &1360534059
 GameObject:
   m_ObjectHideFlags: 0
