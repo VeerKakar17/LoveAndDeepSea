@@ -20,11 +20,13 @@ public class StealEnemy : Enemy
     private float chaseDropWaitTimer = 1;
     private float chaseDropWaitCooldown = 1;
 
-    private void Start()
+    protected override void Start()
     {
         spawnPosition = transform.position;
         currState = Enemy.EnemyMoveState.IdleState;
         currTreasure = null;
+        
+        base.Start();
     }
 
     protected override void IdleStateUpdate()
@@ -104,7 +106,7 @@ public class StealEnemy : Enemy
         );
     }
 
-    protected override void OnPlayerCollision()
+    public override void OnPlayerCollision()
     {
         if (hasTreasure)
         {
@@ -135,21 +137,20 @@ public class StealEnemy : Enemy
         }
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
+    protected void OnCollisionEnter2D(Collision2D other)
     {
-        base.OnTriggerEnter2D(other);
 
         if (currState != Enemy.EnemyMoveState.CloseState)
         {
             return;
         }
 
-        if (!other.CompareTag("Treasure"))
+        if (!other.collider.CompareTag("Treasure"))
         {
             return;
         }
 
-        Treasure treasure = other.GetComponent<Treasure>();
+        Treasure treasure = other.collider.GetComponent<Treasure>();
 
         if (treasure == null || treasure != currTreasure)
         {

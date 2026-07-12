@@ -68,7 +68,7 @@ public class PassiveMob : Enemy
             acceleration * Time.deltaTime
         );
 
-        transform.position += (Vector3)(currentVelocity * Time.deltaTime);
+        rb.linearVelocity = currentVelocity;
     }
 
     private void StartWaiting()
@@ -82,5 +82,10 @@ public class PassiveMob : Enemy
         moveDirection = Random.insideUnitCircle.normalized;
         timer = Random.Range(minMoveTime, maxMoveTime);
         wanderState = WanderState.Moving;
+    }
+
+    public override void OnPlayerCollision()
+    {
+        base.OnPlayerCollision();
     }
 }

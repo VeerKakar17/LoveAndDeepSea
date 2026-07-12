@@ -25,7 +25,7 @@ public class StunEnemy : Enemy
     private Vector2 dashTargetPosition;
     private bool hitPlayer = false;
 
-    protected override void OnPlayerCollision()
+    public override void OnPlayerCollision()
     {
         GameManager.instance.player.StunForSeconds(stunTime);
         hitPlayer = true;

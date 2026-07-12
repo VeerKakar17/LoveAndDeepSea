@@ -16,7 +16,6 @@ public class CurrentZone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("ENTERED CURRENT");
         if (!(other.CompareTag("Player") || other.CompareTag("Treasure"))){
             return;
         }

@@ -121,4 +121,12 @@ public class Treasure : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, min.y + margin, max.y - margin);
         transform.position = pos;
     }
+
+    private void OnEnable()
+    {
+        if (collected)
+        {
+            transform.position = Vector2.zero;
+        }
+    }
 }
