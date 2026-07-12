@@ -41,11 +41,7 @@ public class StealEnemy : Enemy
             return;
         }
 
-        transform.position = new Vector3(
-            spawnPosition.x,
-            spawnPosition.y,
-            transform.position.z
-        );
+        rb.position = spawnPosition;
 
         if (!hasTreasure &&
             Vector2.Distance(
@@ -137,20 +133,20 @@ public class StealEnemy : Enemy
         }
     }
 
-    protected void OnCollisionEnter2D(Collision2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-
+        Debug.Log("Entered collision!!!");
         if (currState != Enemy.EnemyMoveState.CloseState)
         {
             return;
         }
 
-        if (!other.collider.CompareTag("Treasure"))
+        if (!other.CompareTag("Treasure"))
         {
             return;
         }
 
-        Treasure treasure = other.collider.GetComponent<Treasure>();
+        Treasure treasure = other.GetComponent<Treasure>();
 
         if (treasure == null || treasure != currTreasure)
         {
@@ -169,15 +165,22 @@ public class StealEnemy : Enemy
     private void MoveTowards(Vector2 target, float speed)
     {
         Vector2 newPosition = Vector2.MoveTowards(
-            transform.position,
+            rb.position,
             target,
-            speed * Time.deltaTime
+            speed * Time.fixedDeltaTime
         );
 
-        transform.position = new Vector3(
-            newPosition.x,
-            newPosition.y,
-            transform.position.z
-        );
+        rb.MovePosition(newPosition);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        if (hasTreasure)
+        {
+            MapElement treas = currTreasure.GetComponent<MapElement>();
+            treas.OtherTimeObject.HandleTimeSwap(GameManager.instance.CurrentTime);
+        }
     }
 }

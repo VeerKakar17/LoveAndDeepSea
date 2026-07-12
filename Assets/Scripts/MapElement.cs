@@ -28,7 +28,7 @@ public class MapElement : MonoBehaviour
     }
    
     // Handler called when swapping off of this element's native time to other time
-    protected virtual void HandleTimeSwap(GameManager.Time newTime)
+    public virtual void HandleTimeSwap(GameManager.Time newTime)
     {
         // Edge case should not be possible, but adding just in case
         if (newTime == nativeTime)
@@ -49,7 +49,7 @@ public class MapElement : MonoBehaviour
         gameObject.SetActive(false); // Disable self
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         GameManager.OnTimeSwap += HandleTimeSwap;
     }
