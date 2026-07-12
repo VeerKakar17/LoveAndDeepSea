@@ -93,23 +93,31 @@ public class GameManager : MonoBehaviour
     public void DoTimeSwap()
     {
         Debug.Log("Swapping");
+        if (CurrentTime == Time.ModernTime)
+        {
+            // transition.material.SetFloat("_SwapDirection", 0f);
+            shake.minBounds.y += 10000f;
+            shake.maxBounds.y += 10000f;
+        }
+        else
+        {
+            // transition.material.SetFloat("_SwapDirection", 1f);
+            shake.minBounds.y -= 10000f;
+            shake.maxBounds.y -= 10000f;
+        }
         StartCoroutine(SwapSequence());
+
     }
 
     IEnumerator SwapSequence()
     {
-        // if (CurrentTime == Time.ModernTime)
-        // {
-        //     transition.material.SetFloat("_SwapDirection", 0f);
-        // }
-        // else
-        // {
-        //     transition.material.SetFloat("_SwapDirection", 1f);
-        // }
+        
         // yield return StartCoroutine(
         //     transition.Play()
         // );
         yield return StartCoroutine(shake.Shake(.1f,.5f));
+
+        
 
         CurrentTime =
             CurrentTime == Time.ModernTime

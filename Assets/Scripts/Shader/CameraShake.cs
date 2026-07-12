@@ -5,8 +5,8 @@ public class CameraShake : MonoBehaviour
 {
     [SerializeField] private Transform player;
 
-    [SerializeField] private Vector2 minBounds;
-    [SerializeField] private Vector2 maxBounds;
+    [SerializeField] public Vector2 minBounds;
+    [SerializeField] public Vector2 maxBounds;
 
     [SerializeField] private float smoothTime = 0.15f;
 
