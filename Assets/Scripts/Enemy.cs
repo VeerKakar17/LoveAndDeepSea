@@ -45,7 +45,7 @@ public class Enemy : MapElement
         // handle rotation here for later
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag.Equals("Player"))
         {

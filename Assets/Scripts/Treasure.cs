@@ -16,11 +16,23 @@ public class Treasure : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        collected = true;
-
 
         // Tell the game the player has the treasure
         other.GetComponent<Player>().HoldTreasure(this);
+
+        // Rest of Pickup Logic
+        TryPickUp(other.gameObject);
+    }
+
+    // For enemies trying to pick this up
+    public bool TryPickUp(GameObject other)
+    {
+        if (!canBePickedUp)
+        {
+            return false;
+        }
+
+        collected = true;
 
         // Stop physics
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -49,6 +61,8 @@ public class Treasure : MonoBehaviour
             mapElement.OtherTimeObject.transform.localPosition = Vector3.zero;
             mapElement.OtherTimeObject.transform.localRotation = Quaternion.identity;
         }
+
+        return true;
     }
 
     public void OnDropped()

@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     private float lastTurnDirection = 1f;
 
     public Vector2 externalForce;
-    private Treasure heldTreasure;
+    public Treasure heldTreasure { get; private set; }
+
+    public bool HasTreasure { get; private set; }
 
     [SerializeField] private GameObject camera;
 
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
         isStunned = false;
         timer = 0;
         stunUntilTime = 0;
+        HasTreasure = false;
     }
 
     private void Update()
@@ -65,11 +68,17 @@ public class Player : MonoBehaviour
 
         if (Keyboard.current.xKey.wasPressedThisFrame)
         {
-            if (heldTreasure != null)
-            {
-                heldTreasure.OnDropped();
-                heldTreasure = null;
-            }
+            DropTreasure();
+        }
+    }
+
+    public void DropTreasure()
+    {
+        if (HasTreasure)
+        {
+            heldTreasure.OnDropped();
+            heldTreasure = null;
+            HasTreasure = false;
         }
     }
 
@@ -172,6 +181,7 @@ public class Player : MonoBehaviour
     public void HoldTreasure(Treasure treasure)
     {
         heldTreasure = treasure;
+        HasTreasure = true;
     }
 
     public void StunForSeconds(float seconds)
