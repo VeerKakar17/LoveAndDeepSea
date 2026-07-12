@@ -109,9 +109,11 @@ public class GameManager : MonoBehaviour
 
     private void CheckLoseCondition()
     {
-        // if (!PlayerInventory.instance.HasTreasure())
-        // {
-        //     Debug.Log("Game Over!");
-        // }
+        if (!player.HasTreasure)
+        {
+            Debug.Log("lose");
+        } else {
+            Debug.Log("win");
+        }
     }
 }
