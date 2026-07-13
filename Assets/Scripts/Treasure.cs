@@ -7,7 +7,7 @@ public class Treasure : MonoBehaviour
     private bool collected = false;
     private bool canBePickedUp = true;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTrigger(Collider2D other)
     {
         Debug.Log("TREASURE");
         if (collected || !canBePickedUp)

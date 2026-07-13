@@ -146,7 +146,7 @@ public class StealEnemy : Enemy
             return;
         }
 
-        Treasure treasure = other.GetComponent<Treasure>();
+        Treasure treasure = other.gameObject.transform.parent.GetComponent<Treasure>();
 
         if (treasure == null || treasure != currTreasure)
         {
