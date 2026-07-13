@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public bool HasTreasure { get; private set; }
 
     [SerializeField] private GameObject camera;
+    [SerializeField] public Sprite modernSprite;  
+    [SerializeField] public Sprite ancientSprite;
+
 
     private float timer;
     private float stunUntilTime;
@@ -170,10 +173,12 @@ public class Player : MonoBehaviour
         {
             transform.position += new Vector3(0f, 10000f, 0f);
             camera.transform.position += new Vector3(0f, 10000f, 0f);
+            spriteRenderer.sprite = ancientSprite;
         } else
         {
             transform.position -= new Vector3(0f, 10000f, 0f);
             camera.transform.position -= new Vector3(0f, 10000f, 0f);
+            spriteRenderer.sprite = modernSprite;
         }
     }
 
