@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.inDialogueState) return;
+
         if (isStunned)
         {
             timer += Time.deltaTime;
@@ -84,6 +86,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.instance.inDialogueState) return;
+
         if (isStunned) return;
         // Update velocity
         Vector2 inputDirection = new Vector2(moveInput.x, moveInput.y);

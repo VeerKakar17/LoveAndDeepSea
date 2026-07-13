@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
         RemainingAncientTime = maxAncientTime;
         OnAncientTimeChanged?.Invoke(RemainingAncientTime);
 
+        inDialogueState = true;
+        dialogueManager.StartIntroDialogue();
+
         // material.SetVector(
         //     "_Center",
         //     Camera.main.WorldToViewportPoint(player.position)
@@ -133,11 +136,14 @@ public class GameManager : MonoBehaviour
 
     private void CheckLoseCondition()
     {
+        inDialogueState = true;
         if (!player.HasTreasure)
         {
             Debug.Log("lose");
+            dialogueManager.StartBadEnding();
         } else {
             Debug.Log("win");
+            dialogueManager.StartGoodEndingDialogue();
         }
     }
 

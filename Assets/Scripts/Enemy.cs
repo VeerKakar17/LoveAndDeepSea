@@ -26,7 +26,9 @@ public class Enemy : MapElement
 
     private void Update()
     {
-        switch(currState)
+        if (GameManager.instance.inDialogueState) return;
+
+        switch (currState)
         {
             case EnemyMoveState.IdleState:
                 IdleStateUpdate();
@@ -42,6 +44,8 @@ public class Enemy : MapElement
 
     private void FixedUpdate()
     {
+        if (GameManager.instance.inDialogueState) return;
+
         // handle rotation here for later
     }
 
