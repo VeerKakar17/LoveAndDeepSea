@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager;
+// using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.MaterialUpgrader;
+// using static UnityEditor.Rendering.MaterialUpgrader;
 
 public class DialogueManager : MonoBehaviour
 {
