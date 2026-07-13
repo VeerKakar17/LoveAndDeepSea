@@ -31,6 +31,7 @@ public class Treasure : MonoBehaviour
         {
             return false;
         }
+        AudioManager.Instance.PlayTreasurePickup();
 
         collected = true;
 
@@ -70,6 +71,7 @@ public class Treasure : MonoBehaviour
         if (!collected)
             return;
 
+        AudioManager.Instance.PlayTreasureDrop();
         Debug.Log("Dropping: " + gameObject.name);
         Debug.Log("Parent before: " + transform.parent);
         canBePickedUp = false;
