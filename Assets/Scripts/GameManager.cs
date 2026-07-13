@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public static event Action<float> OnAncientTimeChanged;
 
     private CameraShake shake;
+    
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip timeSwapSFX;
 //
 
     public Time CurrentTime { get; private set; } = Time.ModernTime;
@@ -96,6 +99,8 @@ public class GameManager : MonoBehaviour
     public void DoTimeSwap()
     {
         Debug.Log("Swapping");
+        sfxSource.PlayOneShot(timeSwapSFX);
+        
         shake.enableBounds = false;
         if (CurrentTime == Time.ModernTime)
         {
