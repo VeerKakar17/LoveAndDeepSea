@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class MusicManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
 
-    public static MusicManager Instance;
+    public static AudioManager Instance;
 
     [SerializeField] public AudioSource modernSource;
     [SerializeField] public AudioSource ancientSource;

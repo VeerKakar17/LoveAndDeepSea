@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     private float stunUntilTime;
     private bool isStunned;
 
+    private float afterStunCooldown = 1f;
+    private float afterStunCooldownTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,6 +62,8 @@ public class Player : MonoBehaviour
             stunUntilTime = 0;
             timer = 0;
         }
+
+        afterStunCooldownTimer += Time.deltaTime;
 
         // Get movement direction
         if (moveAction == null)
@@ -190,7 +195,14 @@ public class Player : MonoBehaviour
 
     public void StunForSeconds(float seconds)
     {
+        if (afterStunCooldown > afterStunCooldownTimer)
+        {
+            return;
+        }
+
+        afterStunCooldownTimer = 0;
         Debug.Log("STUNNING PLAYER");
+        AudioManager.Instance.PlayFishStun();
         timer = 0;
         stunUntilTime = seconds;
         isStunned = true;
