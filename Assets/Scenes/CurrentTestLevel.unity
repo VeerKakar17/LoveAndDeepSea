@@ -3305,7 +3305,7 @@ MonoBehaviour:
   externalForce: {x: 0, y: 0}
   camera: {fileID: 1200368218}
   modernSprite: {fileID: 3804419739914296938, guid: c536578ffa6ad5f4b8d0acd683d2b9fa, type: 3}
-  ancientSprite: {fileID: 8133923367610592206, guid: 58790df267570d3439ca077471de1809, type: 3}
+  ancientSprite: {fileID: 6620351522751726744, guid: 033132f3cc96afe4b898b1d5af23a633, type: 3}
 --- !u!212 &1391249800
 SpriteRenderer:
   serializedVersion: 2
