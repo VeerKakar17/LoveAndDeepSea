@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static float TIME_Y_OFFSET = 10000f;
     public bool inDialogueState = false;
+    private bool finalDialogue = false;
 
     public enum Time
     {
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
     private void CheckLoseCondition()
     {
         inDialogueState = true;
+        finalDialogue = true;
         if (!player.HasTreasure)
         {
             Debug.Log("lose");
@@ -160,6 +162,9 @@ public class GameManager : MonoBehaviour
 
     public void EndDialogueState()
     {
-        inDialogueState = false;
+        if (!finalDialogue)
+        {
+            inDialogueState = false;
+        }
     }
 }
