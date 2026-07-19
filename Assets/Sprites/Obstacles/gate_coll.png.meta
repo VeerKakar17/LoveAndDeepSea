@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8ee24dafc1e2fbd4cab64823d8a7df1b
+guid: dbd2774bf6816884798e305be2f98f82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3521363202970294581
-    second: big_gate_0
+      213: 8980371715055991580
+    second: gate_coll_0
+  - first:
+      213: -3792581819324924856
+    second: gate_coll_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: big_gate_0
+      name: gate_coll_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc6e2d9e2da912fc0800000000000000
-      internalID: -3521363202970294581
+      spriteID: c1bb0eaae70b0ac70800000000000000
+      internalID: 8980371715055991580
       vertices: []
       indices: 
       edges: []
@@ -125,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df2d01ad333c9e243b7e547ec64d2f65
+    spriteID: 9dae33bdcbbe60b43a99789285704844
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +138,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      big_gate_0: -3521363202970294581
+      gate_coll_0: 8980371715055991580
+      gate_coll_1: -3792581819324924856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
