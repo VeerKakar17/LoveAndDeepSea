@@ -380,4 +380,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb8b849f899f394597631aa679c0b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapElement
-  ancientPrefab: {fileID: 0}
+  ancientPrefab: {fileID: 3250984434709005622, guid: 2f7e2bdbf8d43d0458f30928b48616af, type: 3}
