@@ -5174,8 +5174,8 @@ MonoBehaviour:
   backdrops:
   - {fileID: -3260171324595997514, guid: 395f152d7540fb241b479b60a2300559, type: 3}
   - {fileID: -243972859976666463, guid: f0b5a2896b13cd54f8a45c627b433096, type: 3}
-  - {fileID: -8791667700514730489, guid: 976ad377d2ac15d4b81cf4af2468f549, type: 3}
-  - {fileID: -2555286635232154103, guid: bd62512a18f18054b9c296609be52fb8, type: 3}
+  - {fileID: -333814023518834624, guid: 197dbfe8f52aaf94d8da2fc21eeedbc7, type: 3}
+  - {fileID: 8401338278508874664, guid: 396c4d1875009c44286c44d717ea9dd4, type: 3}
   backdrop: {fileID: 1352520069}
 --- !u!4 &2117529747
 Transform:
