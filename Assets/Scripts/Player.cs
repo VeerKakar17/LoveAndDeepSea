@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Sprite modernSprite;  
     [SerializeField] public Sprite ancientSprite;
 
+    private MovementAnimation movement;
 
     private float timer;
     private float stunUntilTime;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         facingAngle = rb.rotation + (spriteRenderer.flipX ? 180f : 0f);
+        movement = GetComponent<MovementAnimation>();
     }
 
     private void Start()
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         timer = 0;
         stunUntilTime = 0;
         HasTreasure = false;
+        movement.StopMovementAnimation();
     }
 
     private void Update()
@@ -99,6 +102,14 @@ public class Player : MonoBehaviour
         if (isStunned) return;
         // Update velocity
         Vector2 inputDirection = new Vector2(moveInput.x, moveInput.y);
+
+        if (inputDirection.magnitude < 0.001f)
+        {
+            movement.StopMovementAnimation();
+        } else
+        {
+            movement.StartMovementAnimation();
+        }
 
         if (inputDirection.sqrMagnitude > 1f)
         {
@@ -174,14 +185,13 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(0f, 10000f, 0f);
             camera.transform.position += new Vector3(0f, 10000f, 0f);
             spriteRenderer.sprite = ancientSprite;
-            transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         } else
         {
             transform.position -= new Vector3(0f, 10000f, 0f);
             camera.transform.position -= new Vector3(0f, 10000f, 0f);
             spriteRenderer.sprite = modernSprite;
-            transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
+        movement.SwapTime();
     }
 
     private void OnEnable()
