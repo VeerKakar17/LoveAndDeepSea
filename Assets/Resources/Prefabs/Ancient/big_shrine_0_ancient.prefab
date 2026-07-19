@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4982580018178310145}
   - component: {fileID: 3643380149424906002}
   m_Layer: 0
-  m_Name: big_shrine_0
+  m_Name: big_shrine_0_ancient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3069435424440289979, guid: be5326f9bfe3235499dccc324ae44747, type: 3}
+  m_Sprite: {fileID: -7994824261628446390, guid: 070b6350d8cd9ce4d9ebf9b4d150d594, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb8b849f899f394597631aa679c0b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapElement
-  ancientPrefab: {fileID: 2220162351828383736, guid: ba25a053237c0e043af29d10b2f7dc28, type: 3}
+  ancientPrefab: {fileID: 0}
 --- !u!60 &3643380149424906002
 PolygonCollider2D:
   m_ObjectHideFlags: 0
