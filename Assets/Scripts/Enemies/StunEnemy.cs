@@ -122,6 +122,14 @@ public class StunEnemy : Enemy
 
     private void MoveTowards(Vector2 target, float speed)
     {
+        if (Vector2.Distance(transform.position, target) < 0.01f)
+        {
+            GetComponent<MovementAnimation>().StopMovementAnimation();
+        }
+        else
+        {
+            GetComponent<MovementAnimation>().StartMovementAnimation();
+        }
         Vector2 newPosition = Vector2.MoveTowards(
             rb.position,
             target,

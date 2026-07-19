@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         facingAngle = rb.rotation + (spriteRenderer.flipX ? 180f : 0f);
         movement = GetComponent<MovementAnimation>();
+        movement.InitMovementAnimation();
     }
 
     private void Start()

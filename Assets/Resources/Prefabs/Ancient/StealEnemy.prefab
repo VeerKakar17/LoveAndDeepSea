@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7155964901501076134}
   - component: {fileID: 7150655957776690298}
   - component: {fileID: 2979892334562518133}
+  - component: {fileID: 6694736519396280885}
   m_Layer: 7
   m_Name: StealEnemy
   m_TagString: Enemy
@@ -685,6 +686,27 @@ PolygonCollider2D:
       - {x: -0.645, y: 4.25}
       - {x: -0.685, y: 4.25}
   m_UseDelaunayMesh: 1
+--- !u!114 &6694736519396280885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634006422141438994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d128c169704f2844b879c20d360563c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementAnimation
+  movementSprites:
+  - {fileID: -4997572868408654772, guid: 51b7cf11b41b8454a8bf436a6a6f4219, type: 3}
+  - {fileID: 2037200820927582207, guid: 7a9bc339348e3b7438c6640d3af03936, type: 3}
+  - {fileID: 4528922858037344173, guid: c9c320e8a3cb7874388af6f69f7f2142, type: 3}
+  movementSpritesAncient:
+  - {fileID: -4997572868408654772, guid: 51b7cf11b41b8454a8bf436a6a6f4219, type: 3}
+  - {fileID: 2037200820927582207, guid: 7a9bc339348e3b7438c6640d3af03936, type: 3}
+  - {fileID: 4528922858037344173, guid: c9c320e8a3cb7874388af6f69f7f2142, type: 3}
+  secondsPerFrame: 0.2
 --- !u!1 &7844490410785744965
 GameObject:
   m_ObjectHideFlags: 0

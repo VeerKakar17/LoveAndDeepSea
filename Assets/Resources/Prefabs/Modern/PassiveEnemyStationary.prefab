@@ -3753,6 +3753,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8366180864623802740, guid: 684877de1a0683042ae8b1049a9f0f85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6707626393878025360}
+    - targetCorrespondingSourceObject: {fileID: 8366180864623802740, guid: 684877de1a0683042ae8b1049a9f0f85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4466630173367025738}
   m_SourcePrefab: {fileID: 100100000, guid: 684877de1a0683042ae8b1049a9f0f85, type: 3}
 --- !u!1 &6291981499184809157 stripped
 GameObject:
@@ -3772,3 +3775,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   ancientPrefab: {fileID: 5634006422141438994, guid: b1960587b68b757479e3a6e3fdc33d86, type: 3}
+--- !u!114 &4466630173367025738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291981499184809157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d128c169704f2844b879c20d360563c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementAnimation
+  movementSprites:
+  - {fileID: -5007270143232778692, guid: bc2abe9fd45d1cd45b042a800587e386, type: 3}
+  - {fileID: -5316055276897139303, guid: f1b38ba81562fa94e9249e512da86f23, type: 3}
+  - {fileID: 5079346956641932730, guid: 73354f0609d435342817a11a1416c880, type: 3}
+  movementSpritesAncient: []
+  secondsPerFrame: 0.2

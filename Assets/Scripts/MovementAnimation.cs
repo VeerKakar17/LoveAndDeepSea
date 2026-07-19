@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MovementAnimation : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class MovementAnimation : MonoBehaviour
     private int currentFrame;
     private int frameDirection = 1;
     private float frameTimer;
-    private bool isPlaying = false;
+    private bool isPlaying = true;
+    private bool initialized = false;
     private Sprite[] currMovSprites;
 
     private void Awake()
@@ -27,6 +29,18 @@ public class MovementAnimation : MonoBehaviour
         if (!isPlaying || movementSprites == null || movementSprites.Length == 0)
         {
             return;
+        }
+
+        if (!initialized)
+        {
+            if (rb.linearVelocity.sqrMagnitude < 0.001f)
+            {
+                currentFrame = 0;
+                frameDirection = 1;
+                frameTimer = 0f;
+                spriteRenderer.sprite = movementSprites[0];
+                return;
+            }
         }
 
         frameTimer += Time.deltaTime;
@@ -51,6 +65,12 @@ public class MovementAnimation : MonoBehaviour
         }
 
         spriteRenderer.sprite = currMovSprites[currentFrame];
+    }
+    
+    public void InitMovementAnimation()
+    {
+        initialized = true;
+        isPlaying = false;
     }
 
     public void StartMovementAnimation()

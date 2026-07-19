@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8558357670187302965}
   - component: {fileID: 7388428471400668352}
   - component: {fileID: 7471639459720050626}
+  - component: {fileID: 7984277429992536405}
   m_Layer: 7
   m_Name: StunEnemy
   m_TagString: Enemy
@@ -180,3 +181,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.5814742, y: 0.29621947}
   m_Size: {x: 5.5725346, y: 7.5912414}
   m_Direction: 0
+--- !u!114 &7984277429992536405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263162906311350501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d128c169704f2844b879c20d360563c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementAnimation
+  movementSprites:
+  - {fileID: -2534793313627123331, guid: fb736d384c229eb4480dfda027f6e820, type: 3}
+  - {fileID: -1423853232085916727, guid: 225db6b39469d884a8f2e3bf8145f8ac, type: 3}
+  - {fileID: 8687053648144336681, guid: d4209c1db1b632d48829498b93b3f3c9, type: 3}
+  movementSpritesAncient:
+  - {fileID: -2534793313627123331, guid: fb736d384c229eb4480dfda027f6e820, type: 3}
+  - {fileID: -1423853232085916727, guid: 225db6b39469d884a8f2e3bf8145f8ac, type: 3}
+  - {fileID: 8687053648144336681, guid: d4209c1db1b632d48829498b93b3f3c9, type: 3}
+  secondsPerFrame: 0.15
