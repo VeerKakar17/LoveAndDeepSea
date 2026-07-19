@@ -174,11 +174,13 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(0f, 10000f, 0f);
             camera.transform.position += new Vector3(0f, 10000f, 0f);
             spriteRenderer.sprite = ancientSprite;
+            transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         } else
         {
             transform.position -= new Vector3(0f, 10000f, 0f);
             camera.transform.position -= new Vector3(0f, 10000f, 0f);
             spriteRenderer.sprite = modernSprite;
+            transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 

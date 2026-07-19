@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
-public class Treasure : MonoBehaviour
+public class Treasure : MapElement
 {
     private bool collected = false;
     private bool canBePickedUp = true;
@@ -54,13 +55,27 @@ public class Treasure : MonoBehaviour
         transform.localPosition = Vector2.zero;
         transform.localRotation = Quaternion.identity;
 
-        MapElement mapElement = GetComponent<MapElement>();
-
-        if (mapElement.OtherTimeObject != null)
+        if (OtherTimeObject != null)
         {
-            mapElement.OtherTimeObject.transform.SetParent(holdPoint);
-            mapElement.OtherTimeObject.transform.localPosition = Vector3.zero;
-            mapElement.OtherTimeObject.transform.localRotation = Quaternion.identity;
+            OtherTimeObject.transform.SetParent(holdPoint);
+            OtherTimeObject.transform.localPosition = Vector3.zero;
+            OtherTimeObject.transform.localRotation = Quaternion.identity;
+
+            Collider2D oCol = OtherTimeObject.GetComponent<Collider2D>();
+            if (oCol != null)
+                oCol.enabled = false;
+
+            Rigidbody2D oRb = OtherTimeObject.GetComponent<Rigidbody2D>();
+            if (oRb != null)
+            {
+                oRb.simulated = false;
+            }
+
+            OtherTimeObject.GetComponent<Treasure>().collected = true;
+            OtherTimeObject.GetComponent<Treasure>().canBePickedUp = false;
+            OtherTimeObject.GetComponent<SpriteRenderer>().enabled = true;
+            OtherTimeObject.transform.localScale = transform.localScale / 2;
+
         }
 
         return true;
@@ -99,8 +114,21 @@ public class Treasure : MonoBehaviour
         if (mapElement.OtherTimeObject != null)
         {
             mapElement.OtherTimeObject.transform.SetParent(null);
+            OtherTimeObject.GetComponent<Treasure>().collected = false;
+            Collider2D oCol = OtherTimeObject.GetComponent<Collider2D>();
+            if (oCol != null)
+                oCol.enabled = true;
+
+            Rigidbody2D oRb = OtherTimeObject.GetComponent<Rigidbody2D>();
+            if (oRb != null)
+            {
+                oRb.simulated = true;
+            }
+
+            OtherTimeObject.GetComponent<SpriteRenderer>().enabled = false;
+            OtherTimeObject.transform.localScale = transform.localScale;
         }
-        
+
     }
 
     private IEnumerator PickupCooldown()
@@ -115,11 +143,22 @@ public class Treasure : MonoBehaviour
         
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         if (collected)
         {
             transform.localPosition = Vector2.zero;
         }
+    }
+
+    public override void HandleTimeSwap(GameManager.Time newTime)
+    {
+        if (newTime == nativeTime)
+        {
+            return;
+        }
+
+        base.HandleTimeSwap(newTime);
     }
 }
