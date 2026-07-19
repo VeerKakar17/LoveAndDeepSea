@@ -33,6 +33,7 @@ public class StunEnemy : Enemy
 
     protected override void ChaseStateUpdate()
     {
+        Debug.Log("In Chase State");
         Vector2 playerPosition = GameManager.instance.player.transform.position;
         float distToPlayer = Vector2.Distance(playerPosition, transform.position);
 
@@ -64,6 +65,7 @@ public class StunEnemy : Enemy
 
         if (closeMoveState == CloseMoveState.Charging)
         {
+            Debug.Log("Charging:");
             Vector2 directionToPlayer = playerPosition - (Vector2)transform.position;
 
             if (directionToPlayer.sqrMagnitude > 0.001f)
@@ -92,6 +94,7 @@ public class StunEnemy : Enemy
         }
         else
         {
+            Debug.Log("Dashing:");
             MoveTowards(dashTargetPosition, dashSpeed);
 
             if (Vector2.Distance(rb.position, dashTargetPosition) < 0.001f)
