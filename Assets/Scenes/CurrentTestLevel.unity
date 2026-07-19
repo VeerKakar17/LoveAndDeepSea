@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
   player: {fileID: 1391249801}
   minBounds: {x: -18, y: -5}
-  maxBounds: {x: 100, y: 5}
+  maxBounds: {x: 10000, y: 5}
   smoothTime: 0.15
   enableBounds: 1
 --- !u!81 &1200368220
@@ -3699,8 +3699,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1508185348}
   - {fileID: 299596634}
+  - {fileID: 1508185348}
   - {fileID: 529550052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
