@@ -2615,7 +2615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
   player: {fileID: 1391249801}
-  minBounds: {x: -18, y: -5}
+  minBounds: {x: -9, y: -5}
   maxBounds: {x: 10000, y: 5}
   smoothTime: 0.15
   enableBounds: 1
@@ -4829,7 +4829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6893296072689744159, guid: c201d5df6589f01418c525b12d908bae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.044624
+      value: 41.92
       objectReference: {fileID: 0}
     - target: {fileID: 6893296072689744159, guid: c201d5df6589f01418c525b12d908bae, type: 3}
       propertyPath: m_LocalPosition.y
