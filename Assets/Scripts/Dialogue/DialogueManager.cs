@@ -60,17 +60,18 @@ public class DialogueManager : MonoBehaviour
         {
             speakerText.text = speaker;
             speakerBox.SetActive(true);
-            
-            // Is dragon sitting
-            if ((int) sprite > 1 && (int) sprite < 5)
-            {
-                speakerImage.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            } else
-            {
-                speakerImage.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-            }
         }
         dialogueBox.SetActive(true);
+        
+        // Is dragon sitting
+        if ((int)sprite > 1)
+        {
+            speakerImage.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+        else
+        {
+            speakerImage.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        }
 
         int spriteIndex = (int)sprite;
 
