@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     private float afterStunCooldown = 1f;
     private float afterStunCooldownTimer = 0f;
+    
 
     private void Awake()
     {
